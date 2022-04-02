@@ -1,0 +1,17 @@
+<mat-toolbar color="primary"
+             class="toolbar">
+  <span>Sneaker Shop</span>
+  <span class="word-group">
+    <span>Men</span>
+    <span>Women</span>
+    <ng-container *ngIf="activePromotions$ | async as promotions">
+      <ng-container *ngFor="let promotion of promotions">
+        <span>{{ promotion.promotionEyeCatcher }}</span>
+      </ng-container>
+    </ng-container>
+  </span>
+  <span class="word-group">
+    <mat-icon>shopping_cart</mat-icon>
+    <mat-icon>person</mat-icon>
+  </span>
+</mat-toolbar>

@@ -1,0 +1,16 @@
+$base-spacing: 20px;
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+mat-icon {
+    vertical-align: middle;
+}
+
+.word-group {
+    span, mat-icon {
+        margin-left: $base-spacing;
+    }
+}
