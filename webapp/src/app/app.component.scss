@@ -9,8 +9,14 @@ mat-icon {
     vertical-align: middle;
 }
 
+a {
+    text-decoration: inherit;
+    color: inherit;
+}
+
 .word-group {
-    span, mat-icon {
+    a, mat-icon {
         margin-left: $base-spacing;
+        cursor: pointer;
     }
 }

@@ -1,17 +1,34 @@
 <mat-toolbar color="primary"
              class="toolbar">
-  <span>Sneaker Shop</span>
+  <a routerLink="home">Sneaker Shop</a>
   <span class="word-group">
-    <span>Men</span>
-    <span>Women</span>
+    <a routerLink="catalogue/men">Men</a>
+    <a routerLink="catalogue/women">Women</a>
     <ng-container *ngIf="activePromotions$ | async as promotions">
       <ng-container *ngFor="let promotion of promotions">
-        <span>{{ promotion.promotionEyeCatcher }}</span>
+        <a [routerLink]="['catalogue', promotion.id]">{{ promotion.promotionEyeCatcher }}</a>
       </ng-container>
     </ng-container>
   </span>
   <span class="word-group">
-    <mat-icon>shopping_cart</mat-icon>
-    <mat-icon>person</mat-icon>
+    <a routerLink="cart"><mat-icon>shopping_cart</mat-icon></a>
+    <mat-icon [matMenuTriggerFor]="menu">person</mat-icon>
   </span>
 </mat-toolbar>
+
+<router-outlet></router-outlet>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item disabled>
+    <mat-icon>settings</mat-icon>
+    <span>Account Settings</span>
+  </button>
+  <button mat-menu-item disabled>
+    <mat-icon>list_alt</mat-icon>
+    <span>My Orders</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>person_outline</mat-icon>
+    <span>Log-In / Sign-Up</span>
+  </button>
+</mat-menu>
