@@ -10,12 +10,15 @@ import { HomeComponent } from './home/home/home.component';
 import {
   ItemPageComponent,
 } from './items-page/item-page/item-page/item-page.component';
+import {
+  ItemsPageComponent,
+} from './items-page/items-page/items-page.component';
 
 const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { 
         path: 'catalogue/:id', 
-        component: ItemPageComponent,
+        component: ItemsPageComponent,
         children : [
             { path: '../item', component: ItemPageComponent },
         ]

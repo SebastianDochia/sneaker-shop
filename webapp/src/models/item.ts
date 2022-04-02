@@ -1,14 +1,15 @@
 import { Category } from './category';
-import { StockStatus } from './stockStatus';
+import { Rating } from './rating';
+import { Sizes } from './sizes';
 
 export interface Item {
     id: string;
     name: string;
     price: number;
+    shortDescription: string;
     description: string;
     image: string;
-    rating: string;
-    size: number;
-    stockStatus: StockStatus;
+    ratings: Rating[];
+    sizes: Sizes[];
     category: Category;
 }

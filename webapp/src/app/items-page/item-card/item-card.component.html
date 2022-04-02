@@ -1,0 +1,47 @@
+<mat-card *ngIf="item"
+          (mouseover)="hideElement = false"
+          (mouseleave)="hideElement = true">
+    <img mat-card-image
+         [src]="item.image"
+         [alt]="item.name"
+         height="250" />
+
+    <div [hidden]="hideElement"
+         class="quick-actions">
+        <button mat-icon-button>
+            <mat-icon>center_focus_strong</mat-icon>
+        </button>
+        <button mat-icon-button>
+            <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+    </div>
+
+    <mat-card-title>
+        <p>{{ item.name }}</p>
+    </mat-card-title>
+
+    <mat-card-content>
+        <div class="description-container">
+            <p>{{ item.shortDescription }}</p>
+        </div>
+        <h1>{{ item.price | currency }}</h1>
+        <div class="ratings">
+            <mat-icon color="accent"
+                      *ngIf="rating >= 1">star</mat-icon>
+            <mat-icon *ngIf="rating < 1">star_border</mat-icon>
+            <mat-icon color="accent"
+                      *ngIf="rating >= 2">star</mat-icon>
+            <mat-icon *ngIf="rating < 2">star_border</mat-icon>
+            <mat-icon color="accent"
+                      *ngIf="rating >= 3">star</mat-icon>
+            <mat-icon *ngIf="rating < 3">star_border</mat-icon>
+            <mat-icon color="accent"
+                      *ngIf="rating >= 4">star</mat-icon>
+            <mat-icon *ngIf="rating < 4">star_border</mat-icon>
+            <mat-icon color="accent"
+                      *ngIf="rating >= 4.8">star</mat-icon>
+            <mat-icon *ngIf="rating < 4.8">star_border</mat-icon>
+            <span>{{ item.ratings.length }} Ratings</span>
+        </div>
+    </mat-card-content>
+</mat-card>

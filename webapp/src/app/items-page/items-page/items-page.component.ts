@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
+
+import { Subject } from 'rxjs';
+import { Item } from 'src/models/item';
+import { ItemsService } from 'src/services/items.service';
 
 @Component({
   selector: 'app-items-page',
@@ -6,10 +13,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./items-page.component.scss']
 })
 export class ItemsPageComponent implements OnInit {
+  items$ = new Subject<Array<Item>>();
 
-  constructor() { }
+  constructor(private _itemsService: ItemsService) { }
 
   ngOnInit(): void {
+    this.items$ = this._itemsService.items$;
   }
 
 }

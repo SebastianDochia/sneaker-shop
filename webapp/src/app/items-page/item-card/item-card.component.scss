@@ -1,0 +1,59 @@
+mat-card {
+    height: 430px;
+    width: 300px;
+    margin: 30px;
+
+    cursor: pointer;
+}
+
+.ratings {
+    display: flex;
+
+    span {
+        margin-left: 10px;
+        margin-top: 3px;
+        vertical-align: middle;
+    }
+}
+
+.img {
+    height: 250px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+mat-card-content {
+    display: flex;
+    flex-direction: column;
+    height: 130px;
+
+    h1 {
+        margin-bottom: 10px;
+    }
+
+    div {
+        margin-bottom: 8px;
+        margin-bottom: auto;
+    }
+}
+
+.quick-actions {
+    position: absolute;
+    background-color: white;
+    bottom: 210px;
+    display: flex;
+    right: 20px;
+    margin-top: 200px;
+
+    mat-icon {
+        vertical-align: middle;
+    }
+
+    button:nth-of-type(1) {
+        margin-right: 10px;
+    }
+}
+
+[hidden] {
+    display: none;
+}
