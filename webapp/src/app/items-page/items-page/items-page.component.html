@@ -1,5 +1,5 @@
 <div class="items-container">
-    <ng-container *ngFor="let item of items$ | async">
+    <ng-container *ngFor="let item of getFilteredItems(items$ | async)">
         <app-item-card [item] = "item"></app-item-card>
     </ng-container>
 </div>

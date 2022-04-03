@@ -33,12 +33,6 @@ export class ItemPageComponent implements OnInit {
     this.computeRating()
   }
 
-  ngOnDestroy() {
-    if (this.routeSub) {
-      this.routeSub.unsubscribe();
-    }
-  }
-
   computeRating() {
     let sum = 0;
     this.item?.ratings.forEach(el => sum += el.rating);
@@ -62,5 +56,11 @@ export class ItemPageComponent implements OnInit {
 
   setColour(size: number, stockStatus: StockStatus) {
     return size != this.selectedSize && stockStatus != StockStatus.OutOfStock ? "#fff" : "#efefef";
+  }
+  
+  ngOnDestroy() {
+    if (this.routeSub) {
+      this.routeSub.unsubscribe();
+    }
   }
 }
