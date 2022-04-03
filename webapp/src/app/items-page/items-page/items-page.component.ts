@@ -20,5 +20,4 @@ export class ItemsPageComponent implements OnInit {
   ngOnInit(): void {
     this.items$ = this._itemsService.items$;
   }
-
 }

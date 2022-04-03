@@ -1,14 +1,16 @@
 <mat-card *ngIf="item"
           (mouseover)="hideElement = false"
-          (mouseleave)="hideElement = true">
+          (mouseleave)="hideElement = true"
+          (click)="navigateToDetails()">
     <img mat-card-image
          [src]="item.image"
          [alt]="item.name"
-         height="250" />
+         height="250px" />
 
     <div [hidden]="hideElement"
          class="quick-actions">
-        <button mat-icon-button (click)="openDialog()">
+        <button mat-icon-button
+                (click)="openDialog()">
             <mat-icon>center_focus_strong</mat-icon>
         </button>
         <button mat-icon-button>
@@ -17,18 +19,21 @@
     </div>
 
     <mat-card-title>
-        <p>{{ item.name }}</p>
+        <p class="title">{{ item.name }}</p>
     </mat-card-title>
 
-    <mat-card-content>
+    <mat-card-subtitle>
         <div class="description-container">
             <p>{{ item.shortDescription }}</p>
         </div>
-        
+    </mat-card-subtitle>
+
+    <mat-card-content>
         <div class="price-stock-group">
             <h1>{{ item.price | currency }}</h1>
             <div class="stock-group">
-                <div class="circle" [style.background-color]="stockColour"></div>
+                <div class="circle"
+                     [style.background-color]="stockColour"></div>
                 <p [style.color]="stockColour">{{ generalStockStatus }}</p>
             </div>
         </div>

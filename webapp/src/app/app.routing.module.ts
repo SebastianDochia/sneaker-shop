@@ -16,13 +16,8 @@ import {
 
 const routes: Routes = [
     { path: 'home', component: HomeComponent },
-    { 
-        path: 'catalogue/:id', 
-        component: ItemsPageComponent,
-        children : [
-            { path: '../item', component: ItemPageComponent },
-        ]
-    },
+    { path: 'catalogue/:id', component: ItemsPageComponent},
+    { path: 'item/:id', component: ItemPageComponent },
     { path: 'cart', component: CartComponent },
     { path: 'admin', component: AdminPageComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },

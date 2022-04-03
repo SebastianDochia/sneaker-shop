@@ -6,6 +6,10 @@ mat-card {
     cursor: pointer;
 }
 
+.title {
+    line-height: 25px;
+}
+
 .ratings {
     display: flex;
 
@@ -16,16 +20,18 @@ mat-card {
     }
 }
 
-.img {
-    height: 250px;
-    overflow: hidden;
-    margin-bottom: 30px;
+img {
+    object-fit: cover;
+}
+
+mat-card-title {
+    height: 50px;
 }
 
 mat-card-content {
     display: flex;
     flex-direction: column;
-    height: 140px;
+    height: 85px;
 
     h1 {
         margin-bottom: 10px;
@@ -35,6 +41,10 @@ mat-card-content {
         margin-bottom: 8px;
         margin-bottom: auto;
     }
+}
+
+.mat-card-header-text {
+    margin: unset !important;
 }
 
 .quick-actions {
