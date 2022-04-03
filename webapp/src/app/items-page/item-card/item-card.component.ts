@@ -3,10 +3,7 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import {
-  ActivatedRoute,
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 
 import { Item } from 'src/models/item';
 import { StockStatus } from 'src/models/stockStatus';
@@ -25,7 +22,7 @@ export class ItemCardComponent implements OnInit {
   stockColour = "#f23a2f";
   hideElement = true;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {

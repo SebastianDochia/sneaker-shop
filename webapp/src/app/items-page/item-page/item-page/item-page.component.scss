@@ -1,0 +1,21 @@
+.details-page {
+    padding: 40px 5%;
+    display: flex;
+
+    .details {
+        width: 100%;
+        
+
+        
+    }
+}
+
+.not-found {
+    width: 200px;
+    margin: auto;
+    margin-top: 30%;
+
+    > * {
+        text-align: center;
+    }
+}

@@ -172,4 +172,8 @@ export class ItemsService {
             category: Category.Men,
         }
     ]);
+
+    getitem(id: string): Item {
+        return this.items$.getValue().filter(el => el.id == id)[0];
+    }
 }
