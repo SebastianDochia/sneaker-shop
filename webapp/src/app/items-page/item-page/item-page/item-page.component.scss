@@ -4,9 +4,28 @@
 
     .details {
         width: 100%;
-        
+        margin-left: 50px;
 
-        
+        .sizes {
+            margin: 40px 0px;
+
+            h3 {
+                margin-bottom: 5px;
+            }
+
+            .sizes-array {
+                display: flex;
+                flex-wrap: wrap;
+
+                > * {
+                    margin: 7px;
+                }
+            }
+        }
+    }
+
+    p {
+        margin-top: 40px;
     }
 }
 
@@ -17,5 +36,11 @@
 
     > * {
         text-align: center;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .details-page {
+        padding: 60px 20%;
     }
 }

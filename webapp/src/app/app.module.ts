@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -19,6 +21,7 @@ import {
 import {
   ItemsPageComponent,
 } from './items-page/items-page/items-page.component';
+import { RatingComponent } from './util/rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import {
     AdminPageComponent,
     CartComponent,
     ItemCardComponent,
+    RatingComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +43,8 @@ import {
     AppRoutingModule,
     MatCardModule,
     MatButtonModule,
+    MatBadgeModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

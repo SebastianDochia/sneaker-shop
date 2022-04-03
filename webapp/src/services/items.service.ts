@@ -29,11 +29,31 @@ export class ItemsService {
             ],
             sizes: [
                 {
-                    size: 34,
+                    size: 33,
                     stockStatus: StockStatus.InStock,
                 },
                 {
-                    size: 33,
+                    size: 34,
+                    stockStatus: StockStatus.JustAFewLeft,
+                },
+                {
+                    size: 35,
+                    stockStatus: StockStatus.OutOfStock,
+                },
+                {
+                    size: 36,
+                    stockStatus: StockStatus.OutOfStock,
+                },
+                {
+                    size: 37,
+                    stockStatus: StockStatus.OutOfStock,
+                },
+                {
+                    size: 38,
+                    stockStatus: StockStatus.JustAFewLeft,
+                },
+                {
+                    size: 39,
                     stockStatus: StockStatus.JustAFewLeft,
                 }
             ],

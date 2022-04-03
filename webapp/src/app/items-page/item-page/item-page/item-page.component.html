@@ -1,12 +1,37 @@
-<div class="details-page" *ngIf="item; else Error">
-    <img [src]="item.image" [alt]="item.name" width="50%">
+<div class="details-page"
+     *ngIf="item; else Error">
+    <img [src]="item.image"
+         [alt]="item.name"
+         width="50%">
     <div class="details">
         <h1>{{ item.name }}</h1>
         <h2>{{ item.shortDescription }}</h2>
         <h2>{{ item.price | currency }}</h2>
-        <button>Add To Cart</button>
+        
+        <div class="sizes">
+            <h3>Select Size</h3>
+            <div class="sizes-array">
+                <div *ngFor="let size of item.sizes">
+                    <button mat-flat-button
+                            matBadge="!"
+                            matTooltip="Just a few left!"
+                            matBadgeColor="warn"
+                            [matTooltipDisabled]="!isJustAFewLeft(size.stockStatus)"
+                            [matBadgeHidden]="!isJustAFewLeft(size.stockStatus)"
+                            [ngStyle]="{'background-color': setColour(size.size, size.stockStatus)}"
+                            [disabled]="isNotInStock(size.stockStatus)"
+                            (click)="selectSize(size.size)">{{ size.size }}</button>
+                </div>
+            </div>
+        </div>
+        
+        <button mat-raised-button
+                color="accent" [disabled]="!selectedSize">Add To Cart</button>
+
         <p>{{ item.description }}</p>
-        <p>reviews</p>
+
+        <app-rating [rating]="rating"
+                    [ratingsCount]="item.ratings.length"></app-rating>
     </div>
 </div>
 

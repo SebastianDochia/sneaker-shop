@@ -1,0 +1,18 @@
+<div class="ratings">
+    <mat-icon color="accent"
+              *ngIf="rating >= 1">star</mat-icon>
+    <mat-icon *ngIf="rating < 1">star_border</mat-icon>
+    <mat-icon color="accent"
+              *ngIf="rating >= 2">star</mat-icon>
+    <mat-icon *ngIf="rating < 2">star_border</mat-icon>
+    <mat-icon color="accent"
+              *ngIf="rating >= 3">star</mat-icon>
+    <mat-icon *ngIf="rating < 3">star_border</mat-icon>
+    <mat-icon color="accent"
+              *ngIf="rating >= 4">star</mat-icon>
+    <mat-icon *ngIf="rating < 4">star_border</mat-icon>
+    <mat-icon color="accent"
+              *ngIf="rating >= 4.8">star</mat-icon>
+    <mat-icon *ngIf="rating < 4.8">star_border</mat-icon>
+    <span>{{ ratingsCount }} Ratings</span>
+</div>
