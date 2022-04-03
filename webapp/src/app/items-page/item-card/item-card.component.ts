@@ -17,6 +17,9 @@ export class ItemCardComponent implements OnInit {
   @Input()
   item: Item | null = null;
 
+  @Input()
+  selectedCategory: string | null = null;
+
   rating: number = 0;
   generalStockStatus = StockStatus.OutOfStock;
   stockColour = "#f23a2f";

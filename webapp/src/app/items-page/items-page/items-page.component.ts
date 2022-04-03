@@ -10,7 +10,9 @@ import {
 } from 'rxjs';
 import { Category } from 'src/models/category';
 import { Item } from 'src/models/item';
+import { Promotion } from 'src/models/promotion';
 import { ItemsService } from 'src/services/items.service';
+import { PromotionService } from 'src/services/promotion.service';
 
 @Component({
   selector: 'app-items-page',
@@ -20,15 +22,17 @@ import { ItemsService } from 'src/services/items.service';
 export class ItemsPageComponent implements OnInit {
   private routeSub: Subscription | null = null;
   items$ = new Subject<Array<Item>>();
+  promotions$ = new Subject<Array<Promotion>>();
   filter: string = "";
 
-  constructor(private _itemsService: ItemsService, private activatedRoute: ActivatedRoute) { }
+  constructor(private _itemsService: ItemsService, private _promotionService: PromotionService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.items$ = this._itemsService.items$;
+    this.promotions$ = this._promotionService.activePromotions$;
   }
 
-  getFilteredItems(items: Array<Item> | null): Array<Item> {
+  getFilteredItems(items: Array<Item> | null, promotions: Array<Promotion> | null): Array<Item> {
     if (items) {
       this.routeSub = this.activatedRoute.params.subscribe(params => {
         this.filter = params.id;
@@ -46,7 +50,12 @@ export class ItemsPageComponent implements OnInit {
         return items.filter(el => el.category == Category.Women);
       }
 
-      
+      if (promotions) {
+        const selectedPromotion = promotions.filter(el => el.id == this.filter)[0];
+
+        let promoteditemsIds = selectedPromotion.itemsInPromotion.map(el => el.itemId);
+        return items.filter(item => promoteditemsIds.includes(item.id));
+      }
     }
 
     return [];
