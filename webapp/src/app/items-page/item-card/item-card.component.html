@@ -8,7 +8,7 @@
 
     <div [hidden]="hideElement"
          class="quick-actions">
-        <button mat-icon-button>
+        <button mat-icon-button (click)="openDialog()">
             <mat-icon>center_focus_strong</mat-icon>
         </button>
         <button mat-icon-button>
@@ -24,7 +24,15 @@
         <div class="description-container">
             <p>{{ item.shortDescription }}</p>
         </div>
-        <h1>{{ item.price | currency }}</h1>
+        
+        <div class="price-stock-group">
+            <h1>{{ item.price | currency }}</h1>
+            <div class="stock-group">
+                <div class="circle" [style.background-color]="stockColour"></div>
+                <p [style.color]="stockColour">{{ generalStockStatus }}</p>
+            </div>
+        </div>
+
         <div class="ratings">
             <mat-icon color="accent"
                       *ngIf="rating >= 1">star</mat-icon>

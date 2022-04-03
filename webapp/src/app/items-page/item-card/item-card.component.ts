@@ -15,14 +15,15 @@ import { StockStatus } from 'src/models/stockStatus';
 export class ItemCardComponent implements OnInit {
   @Input()
   item: Item | null = null;
-  
+
   rating: number = 0;
   generalStockStatus = StockStatus.OutOfStock;
+  stockColour = "#f23a2f";
   hideElement = true;
 
   constructor() {
   }
-  
+
   ngOnInit(): void {
     this.computeRating();
     this.setGeneralStockStatus();
@@ -32,12 +33,30 @@ export class ItemCardComponent implements OnInit {
     let sum = 0;
     this.item?.ratings.forEach(el => sum += el.rating);
 
-    if(this.item) {
-      this.rating = sum/this.item!.ratings.length;
+    if (this.item) {
+      this.rating = sum / this.item!.ratings.length;
     }
   }
 
   setGeneralStockStatus() {
+    this.item?.sizes.forEach(el => {
+      if (el.stockStatus == StockStatus.JustAFewLeft) {
+        this.generalStockStatus = StockStatus.JustAFewLeft;
+        this.stockColour = "#ff8d05";
+        return;
+      }
+    });
+
+    this.item?.sizes.forEach(el => {
+      if (el.stockStatus == StockStatus.InStock) {
+        this.generalStockStatus = StockStatus.InStock;
+        this.stockColour = "#43a547";
+        return;
+      }
+    });
+  }
+
+  openDialog() {
 
   }
 }

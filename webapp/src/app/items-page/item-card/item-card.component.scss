@@ -25,7 +25,7 @@ mat-card {
 mat-card-content {
     display: flex;
     flex-direction: column;
-    height: 130px;
+    height: 140px;
 
     h1 {
         margin-bottom: 10px;
@@ -51,6 +51,36 @@ mat-card-content {
 
     button:nth-of-type(1) {
         margin-right: 10px;
+    }
+}
+
+.price-stock-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h1 {
+        margin: unset;
+    }
+
+    p {
+        margin: unset;
+    }
+
+    .stock-group {
+        margin: unset;
+        display: flex;
+        align-items: center;
+
+        .circle {
+            height: 10px;
+            width: 10px;
+            background-color: #bbb;
+            border-radius: 50%;
+            margin: unset;
+            margin-right: 5px;
+            margin-bottom: 1.5px;
+        }
     }
 }
 

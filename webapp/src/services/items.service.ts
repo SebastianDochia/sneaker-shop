@@ -100,7 +100,7 @@ export class ItemsService {
                 },
                 {
                     size: 33,
-                    stockStatus: StockStatus.OutOfStock,
+                    stockStatus: StockStatus.JustAFewLeft,
                 }
             ],
             category: Category.Women,
