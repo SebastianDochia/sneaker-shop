@@ -1,1 +1,70 @@
-<p>cart works!</p>
+<div class="cart">
+    <div class="details">
+        <h2>Cart</h2>
+        <div class="cart-list">
+            <ng-container *ngFor="let item of cartItems">
+                <app-list-card [cartItem]="item"></app-list-card>
+            </ng-container>
+        </div>
+    </div>
+    <div class="summary">
+        <h2>Items in cart: {{ cartItemsCount }}</h2>
+        <h3>Price: {{ price | currency }}</h3>
+        <h2>Price after discounts: {{ discountedPrice | currency }}</h2>
+
+        <button mat-raised-button
+                class="payment-type"
+                [matMenuTriggerFor]="menu">
+            Payment Type
+        </button>
+
+        <h1>Shipping Address</h1>
+        <mat-form-field class="example-full-width"
+                        appearance="fill">
+            <mat-label>Full Name</mat-label>
+            <input matInput
+                   placeholder="Ex. Dorian Popa">
+        </mat-form-field>
+        <mat-form-field class="example-full-width"
+                        appearance="fill">
+            <mat-label>Address Line 1</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="example-full-width"
+                        appearance="fill">
+            <mat-label>Address Line 2</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="example-full-width"
+                        appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput
+                   type="email"
+                   placeholder="Ex. Dorian.Popa@gmail.com">
+        </mat-form-field>
+
+        <button mat-raised-button
+                color="accent" [disabled]="isCartEmpty()">Pay With {{ paymentType }}</button>
+    </div>
+</div>
+
+<mat-menu #menu="matMenu">
+    <button mat-menu-item
+            disabled
+            (click)="selectPaymentType(paymentTypes.GiftCard)">
+        <mat-icon>card_giftcard</mat-icon>
+        <span>Gift Card</span>
+    </button>
+    <button mat-menu-item (click)="selectPaymentType(paymentTypes.Card)">
+        <mat-icon>credit_card</mat-icon>
+        <span>Credit Card</span>
+    </button>
+    <button mat-menu-item (click)="selectPaymentType(paymentTypes.PayPal)">
+        <mat-icon>perm_identity</mat-icon>
+        <span>PayPal</span>
+    </button>
+    <button mat-menu-item (click)="selectPaymentType(paymentTypes.Cash)">
+        <mat-icon>money</mat-icon>
+        <span>Cash On Delivery</span>
+    </button>
+</mat-menu>

@@ -22,7 +22,7 @@
                 (click)="openDialog()" click-stop-propagation>
             <mat-icon>center_focus_strong</mat-icon>
         </button>
-        <button mat-icon-button click-stop-propagation>
+        <button mat-icon-button click-stop-propagation disabled="true" (click)="addToCart(item.id)">
             <mat-icon>add_shopping_cart</mat-icon>
         </button>
     </div>

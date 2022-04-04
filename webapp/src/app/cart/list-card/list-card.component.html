@@ -1,0 +1,11 @@
+<mat-card>
+    <mat-card-content class="contents" *ngIf="item && cartItem">
+        <h2>{{ item.name }}</h2>
+        <h4>Size: {{ cartItem.size }}</h4>
+        <div class="price">
+            <h3 [style.text-decoration]="getTextDecoration()">{{ cartItem.price | currency }}</h3>
+            <h3 *ngIf="cartItem.discountedPrice">{{ cartItem.discountedPrice | currency }}</h3>
+        </div>
+        <button mat-icon-button color="warn" (click)="removeFromCart(cartItem.id)"><mat-icon>remove_shopping_cart</mat-icon></button>
+    </mat-card-content>
+</mat-card>

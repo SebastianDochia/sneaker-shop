@@ -196,7 +196,7 @@ export class ItemsService {
         }
     ]);
 
-    getitem(id: string): Item {
+    getItem(id: string): Item {
         return this.items$.getValue().filter(el => el.id == id)[0];
     }
 

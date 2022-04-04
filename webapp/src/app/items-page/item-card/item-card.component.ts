@@ -10,6 +10,7 @@ import { Item } from 'src/models/item';
 import { PromotedItem } from 'src/models/promotedItem';
 import { Promotion } from 'src/models/promotion';
 import { StockStatus } from 'src/models/stockStatus';
+import { CartService } from 'src/services/cart.service';
 import { ItemsService } from 'src/services/items.service';
 import { PromotionService } from 'src/services/promotion.service';
 
@@ -39,6 +40,7 @@ export class ItemCardComponent implements OnInit {
     private router: Router, 
     private _promotionService: PromotionService, 
     private _itemsService: ItemsService,
+    private _cartService: CartService,
     public dialog: MatDialog,
     ) {
   }
@@ -87,6 +89,10 @@ export class ItemCardComponent implements OnInit {
       data: { dataItem: this.item },
       panelClass: 'dialog'
     });
+  }
+
+  addToCart(itemId: string) {
+    // this._cartService.addItem(itemId);
   }
 
   getDiscount() {

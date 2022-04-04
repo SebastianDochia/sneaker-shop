@@ -12,6 +12,7 @@ import { Item } from 'src/models/item';
 import { PromotedItem } from 'src/models/promotedItem';
 import { Promotion } from 'src/models/promotion';
 import { StockStatus } from 'src/models/stockStatus';
+import { CartService } from 'src/services/cart.service';
 import { ItemsService } from 'src/services/items.service';
 import { PromotionService } from 'src/services/promotion.service';
 
@@ -35,6 +36,7 @@ export class ItemPageComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private _itemsService: ItemsService,
     private _promotionService: PromotionService,
+    private _cartService: CartService,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: { dataItem: Item }
   ) { }
 
@@ -43,7 +45,7 @@ export class ItemPageComponent implements OnInit {
       this.itemId = params.id;
     });
 
-    this.item = this.itemId ? this._itemsService.getitem(this.itemId) : this.data.dataItem;
+    this.item = this.itemId ? this._itemsService.getItem(this.itemId) : this.data.dataItem;
 
     if (this.item) {
       this.promotionsForItem = this._promotionService.getPromotionsForItem(this.item.id);
@@ -80,12 +82,18 @@ export class ItemPageComponent implements OnInit {
 
   getDiscount() {
     if (this.promotionsForItem && this.item) {
-      this.discount = this._itemsService.getDiscount(this.promotionsForItem, this.item)
+      this.discount = this._itemsService.getDiscount(this.promotionsForItem, this.item);
     }
   }
 
   getRealPrice(item: Item) {
     return this._itemsService.getRealPrice(item, this.discount);
+  }
+
+  addToCart(id: string, price: number, realPrice: number) {
+    if (this.selectedSize) {
+      this._cartService.addItem(id, this.selectedSize, price, realPrice);
+    }
   }
 
   ngOnDestroy() {

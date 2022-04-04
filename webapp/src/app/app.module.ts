@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -28,6 +29,7 @@ import {
   ItemsPageComponent,
 } from './items-page/items-page/items-page.component';
 import { RatingComponent } from './util/rating/rating.component';
+import { ListCardComponent } from './cart/list-card/list-card.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { RatingComponent } from './util/rating/rating.component';
     CartComponent,
     ItemCardComponent,
     RatingComponent,
-    ClickStopPropagation
+    ClickStopPropagation,
+    ListCardComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,8 @@ import { RatingComponent } from './util/rating/rating.component';
     MatBadgeModule,
     MatTooltipModule,
     MatChipsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
