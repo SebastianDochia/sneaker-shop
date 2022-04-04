@@ -3,10 +3,17 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { Item } from 'src/models/item';
+import { PromotedItem } from 'src/models/promotedItem';
+import { Promotion } from 'src/models/promotion';
 import { StockStatus } from 'src/models/stockStatus';
+import { ItemsService } from 'src/services/items.service';
+import { PromotionService } from 'src/services/promotion.service';
+
+import { ItemPageComponent } from '../item-page/item-page/item-page.component';
 
 @Component({
   selector: 'app-item-card',
@@ -20,17 +27,30 @@ export class ItemCardComponent implements OnInit {
   @Input()
   selectedCategory: string | null = null;
 
+  promotionsForItem: Array<Promotion> | null = null;
+  discount: PromotedItem | null = null;
+
   rating: number = 0;
   generalStockStatus = StockStatus.OutOfStock;
   stockColour = "#f23a2f";
   hideElement = true;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router, 
+    private _promotionService: PromotionService, 
+    private _itemsService: ItemsService,
+    public dialog: MatDialog,
+    ) {
   }
 
   ngOnInit(): void {
+    if (this.item) {
+      this.promotionsForItem = this._promotionService.getPromotionsForItem(this.item.id);
+    }
+
     this.computeRating();
     this.setGeneralStockStatus();
+    this.getDiscount();
   }
 
   computeRating() {
@@ -61,7 +81,22 @@ export class ItemCardComponent implements OnInit {
   }
 
   openDialog() {
+    this.dialog.open(ItemPageComponent, {
+      height: '850px',
+      width: '1080px',
+      data: { dataItem: this.item },
+      panelClass: 'dialog'
+    });
+  }
 
+  getDiscount() {
+    if (this.promotionsForItem && this.item) {
+      this. discount = this._itemsService.getDiscount(this.promotionsForItem, this.item)
+    }
+  }
+
+  getRealPrice(item: Item) {
+    return this._itemsService.getRealPrice(item, this.discount);
   }
 
   navigateToDetails() {

@@ -1,13 +1,19 @@
 import {
   Component,
+  Inject,
   OnInit,
+  Optional,
 } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 import { Item } from 'src/models/item';
+import { PromotedItem } from 'src/models/promotedItem';
+import { Promotion } from 'src/models/promotion';
 import { StockStatus } from 'src/models/stockStatus';
 import { ItemsService } from 'src/services/items.service';
+import { PromotionService } from 'src/services/promotion.service';
 
 @Component({
   selector: 'app-item-page',
@@ -16,21 +22,35 @@ import { ItemsService } from 'src/services/items.service';
 })
 export class ItemPageComponent implements OnInit {
   private routeSub: Subscription | null = null;
+
   item: Item | null = null;
   itemId: string = "";
   rating: number = 0;
-  selectedSize: number | undefined = undefined;
 
-  constructor(private activatedRoute: ActivatedRoute, private _itemsService: ItemsService) { }
+  selectedSize: number | undefined = undefined;
+  promotionsForItem: Array<Promotion> | null = null;
+  discount: PromotedItem | null = null;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private _itemsService: ItemsService,
+    private _promotionService: PromotionService,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: { dataItem: Item }
+  ) { }
 
   ngOnInit(): void {
     this.routeSub = this.activatedRoute.params.subscribe(params => {
       this.itemId = params.id;
     });
 
-    this.item = this._itemsService.getitem(this.itemId);
+    this.item = this.itemId ? this._itemsService.getitem(this.itemId) : this.data.dataItem;
 
-    this.computeRating()
+    if (this.item) {
+      this.promotionsForItem = this._promotionService.getPromotionsForItem(this.item.id);
+    }
+
+    this.computeRating();
+    this.getDiscount();
   }
 
   computeRating() {
@@ -57,7 +77,17 @@ export class ItemPageComponent implements OnInit {
   setColour(size: number, stockStatus: StockStatus) {
     return size != this.selectedSize && stockStatus != StockStatus.OutOfStock ? "#fff" : "#efefef";
   }
-  
+
+  getDiscount() {
+    if (this.promotionsForItem && this.item) {
+      this.discount = this._itemsService.getDiscount(this.promotionsForItem, this.item)
+    }
+  }
+
+  getRealPrice(item: Item) {
+    return this._itemsService.getRealPrice(item, this.discount);
+  }
+
   ngOnDestroy() {
     if (this.routeSub) {
       this.routeSub.unsubscribe();

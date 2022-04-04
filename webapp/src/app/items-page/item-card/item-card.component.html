@@ -7,13 +7,22 @@
          [alt]="item.name"
          height="250px" />
 
+    <div class="chips">
+        <mat-chip-list aria-label="Fish selection" >
+            <mat-chip *ngFor="let promo of promotionsForItem"
+                      color="accent"
+                      [selectable]="false"
+                      selected>{{ promo.promotionName }}</mat-chip>
+        </mat-chip-list>
+    </div>
+
     <div [hidden]="hideElement"
          class="quick-actions">
         <button mat-icon-button
-                (click)="openDialog()">
+                (click)="openDialog()" click-stop-propagation>
             <mat-icon>center_focus_strong</mat-icon>
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button click-stop-propagation>
             <mat-icon>add_shopping_cart</mat-icon>
         </button>
     </div>
@@ -29,8 +38,9 @@
     </mat-card-subtitle>
 
     <mat-card-content>
+        <p *ngIf="discount" class="old-price">{{ item.price | currency }}</p>
         <div class="price-stock-group">
-            <h1>{{ item.price | currency }}</h1>
+            <h1>{{ getRealPrice(item) | currency }}</h1>
             <div class="stock-group">
                 <div class="circle"
                      [style.background-color]="stockColour"></div>

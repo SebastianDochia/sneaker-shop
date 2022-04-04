@@ -39,6 +39,15 @@
     }
 }
 
+.mat-chip.mat-standard-chip::after {
+    background: none !important;
+}
+
+.old-price {
+    margin-bottom: 0px;
+    text-decoration: line-through;
+}
+
 @media only screen and (min-width: 1400px) {
     .details-page {
         padding: 60px 20%;

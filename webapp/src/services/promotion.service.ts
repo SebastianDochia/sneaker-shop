@@ -42,4 +42,12 @@ export class PromotionService {
             promotionType: PromotionType.TwoForOne
         }
     ]);
+
+    getPromotionsForItem(id: string) {
+        return this.activePromotions$.getValue().filter(promo => {
+            const itemsInPromotion = promo.itemsInPromotion.filter(item => item.itemId == id);
+
+            return itemsInPromotion.length == 0 ? false : true;
+        });
+    }
 }

@@ -6,7 +6,16 @@
     <div class="details">
         <h1>{{ item.name }}</h1>
         <h2>{{ item.shortDescription }}</h2>
-        <h2>{{ item.price | currency }}</h2>
+        <div class="chips">
+            <mat-chip-list aria-label="Fish selection" >
+                <mat-chip *ngFor="let promo of promotionsForItem"
+                          color="accent"
+                          [selectable]="false"
+                          selected>{{ promo.promotionName }}</mat-chip>
+            </mat-chip-list>
+        </div>
+        <p *ngIf="discount" class="old-price">{{ item.price | currency }}</p>
+        <h1>{{ getRealPrice(item) | currency }}</h1>
         
         <div class="sizes">
             <h3>Select Size</h3>

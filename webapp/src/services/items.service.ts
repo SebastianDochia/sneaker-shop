@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Category } from 'src/models/category';
 import { Item } from 'src/models/item';
+import { PromotedItem } from 'src/models/promotedItem';
+import { Promotion } from 'src/models/promotion';
+import { PromotionType } from 'src/models/promotionType';
 import { StockStatus } from 'src/models/stockStatus';
 
 @Injectable({
@@ -195,5 +198,19 @@ export class ItemsService {
 
     getitem(id: string): Item {
         return this.items$.getValue().filter(el => el.id == id)[0];
+    }
+
+    getDiscount(promotionsForItem: Promotion[], item: Item) {
+        const discountPromotion = promotionsForItem.filter(el => el.promotionType == PromotionType.Discount)[0];
+
+        return discountPromotion?.itemsInPromotion.filter(el => el.itemId == item.id)[0];
+    }
+
+    getRealPrice(item: Item, discount: PromotedItem | null) {
+        if (discount) {
+            return item.price * discount.priceModifier;
+        }
+
+        return item.price;
     }
 }

@@ -84,6 +84,24 @@ mat-card-content {
     }
 }
 
+.small-chip {
+    height: 10px !important;
+}
+
+.chips {
+    position: absolute;
+    margin-top: -260px;
+}
+
+.mat-chip.mat-standard-chip::after {
+    background: none !important;
+}
+
+.old-price {
+    margin-bottom: 0px;
+    text-decoration: line-through;
+}
+
 [hidden] {
     display: none;
 }

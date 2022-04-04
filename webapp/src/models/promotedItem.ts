@@ -1,4 +1,4 @@
-export interface Promoteditem {
+export interface PromotedItem {
     itemId: string;
     priceModifier: number;
 }
