@@ -1,6 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
+import {
+  map,
+  tap,
+} from 'rxjs/operators';
 import { Promotion } from 'src/models/promotion';
 import { PromotionType } from 'src/models/promotionType';
 
@@ -8,40 +13,35 @@ import { PromotionType } from 'src/models/promotionType';
     providedIn: 'root',
 })
 export class PromotionService {
-    activePromotions$ = new BehaviorSubject<Array<Promotion>>([
-        {
-            id: "1",
-            promotionName: "Summer Sale",
-            promotionEyeCatcher: "Up to 50% off",
-            itemsInPromotion: [
-                { 
-                    itemId: "1",
-                    priceModifier: 0.7,
-                },
-                {
-                    itemId: "2",
-                    priceModifier: 0.6,
-                }
-            ],
-            promotionType: PromotionType.Discount,
-        },
-        {
-            id: "2",
-            promotionName: "Buy one, get one free",
-            promotionEyeCatcher: "Two for one",
-            itemsInPromotion: [
-                { 
-                    itemId: "2",
-                    priceModifier: 1,
-                },
-                {
-                    itemId: "3",
-                    priceModifier: 1,
-                }
-            ],
-            promotionType: PromotionType.TwoForOne
-        }
-    ]);
+    activePromotions$ = new BehaviorSubject<Array<Promotion>>([]);
+
+    constructor(private http: HttpClient) {
+        this.fetchPromotions();
+    }
+
+    fetchPromotions() {
+        this.http.get(`//localhost:5000/api/v1/promotions`).pipe(
+            map((data: any) => data.data),
+            tap((data: any) => {
+                console.log(data);
+                data.forEach((item: any) => {
+                    const old_key = '_id';
+                    const new_key = 'id';
+
+                    item[new_key] = item[old_key];
+                    delete item[old_key];
+
+                    if (item.promotionType == "Discount") {
+                        item.promotionType = PromotionType.Discount;
+                    }
+
+                    if (item.promotionType == "TwoForOne") {
+                        item.promotionType = PromotionType.TwoForOne;
+                    }
+                });
+            })
+        ).subscribe((data: any) => this.activePromotions$.next(data));
+    }
 
     getPromotionsForItem(id: string) {
         return this.activePromotions$.getValue().filter(promo => {

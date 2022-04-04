@@ -25,14 +25,29 @@ const ItemSchema = new mongoose.Schema({
         required: [true, 'Image is required']
     },
     ratings: [{
-        type: mongoose.Schema.ObjectId,
-        ref: 'Rating',
-        required: true
+        userId: {
+            type: String,
+            required: [true, 'UserID is required'],
+            unique: true,
+            trim: true
+        },
+        rating: {
+            type: Number,
+            required: [true, 'Rating is required']
+        }
     }],
     sizes: [{
-        type: mongoose.Schema.ObjectId,
-        ref: 'Size',
-        required: true
+        size: {
+            type: Number,
+            required: [true, 'Number is required'],
+            unique: true,
+            trim: true
+        },
+        stockStatus: {
+            type: String,
+            enum: ['InStock', 'JustAFewLeft', 'OutOfStock'],
+            required: [true, 'stockStatus is required']
+        }
     }],
     isStarted: {
         type: String,

@@ -14,9 +14,16 @@ const PromotionSchema = new mongoose.Schema({
         maxlenght: [30, 'Description cannot be more than 30 characters']
     },
     itemsInPromotion: [{
-        type: mongoose.Schema.ObjectId,
-        ref: 'Promoteditem',
-        required: true
+        itemId: {
+            type: String,
+            required: [true, 'Id is required'],
+            trim: true,
+            maxlenght: [35, 'Name cannot be more than 35 characters']
+        },
+        priceModifier: {
+            type: Number,
+            required: [true, 'Price Modifier is required']
+        }
     }],
     promotionType: {
         type: String,

@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,6 +21,7 @@ import { AdminPageComponent } from './admin/admin-page/admin-page.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { CartComponent } from './cart/cart/cart.component';
+import { ListCardComponent } from './cart/list-card/list-card.component';
 import { HomeComponent } from './home/home/home.component';
 import { ItemCardComponent } from './items-page/item-card/item-card.component';
 import {
@@ -29,7 +31,6 @@ import {
   ItemsPageComponent,
 } from './items-page/items-page/items-page.component';
 import { RatingComponent } from './util/rating/rating.component';
-import { ListCardComponent } from './cart/list-card/list-card.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ListCardComponent } from './cart/list-card/list-card.component';
     MatChipsModule,
     MatDialogModule,
     MatInputModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

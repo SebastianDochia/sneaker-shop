@@ -14,7 +14,7 @@ export class CartService {
     addItem(id: string, size: number, price: number, discountedPrice: number | null) {
         const cartItemsData = this.cartItems$.getValue();
 
-        discountedPrice = discountedPrice == price ? null : price;
+        discountedPrice = discountedPrice == price ? null : discountedPrice;
 
         cartItemsData.push({ id, size, price, discountedPrice });
 
