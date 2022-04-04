@@ -19,7 +19,8 @@ dotenv.config({ path: './config/config.env' });
 connectDB();
 
 // Route files
-const workspaces = require('./routes/workspaces');
+const items = require('./routes/items');
+const promotions = require('./routes/promotions');
 const auth = require('./routes/auth');
 const user = require('./routes/user');
 
@@ -59,7 +60,8 @@ app.use(hpp());
 app.use(cors());
 
 // Mount routers
-app.use('/api/v1/workspaces', workspaces);
+app.use('/api/v1/items', items);
+app.use('/api/v1/promotions', promotions);
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/user', user);
 
