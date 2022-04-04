@@ -1,1 +1,6 @@
-<p>home works!</p>
+<h1>WELCOME</h1>
+
+<h2>New arrivals</h2>
+<div *ngIf="items$ | async as items" class="arrivals">
+    <app-item-card *ngFor="let item of firstTwoitems(items)" [item]="item"></app-item-card>
+</div>

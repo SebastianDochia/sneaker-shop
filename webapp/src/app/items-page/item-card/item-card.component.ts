@@ -97,7 +97,7 @@ export class ItemCardComponent implements OnInit {
 
   getDiscount() {
     if (this.promotionsForItem && this.item) {
-      this. discount = this._itemsService.getDiscount(this.promotionsForItem, this.item)
+      this.discount = this._itemsService.getDiscount(this.promotionsForItem, this.item)
     }
   }
 

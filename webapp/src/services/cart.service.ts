@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { BehaviorSubject } from 'rxjs';
 import { CartItem } from 'src/models/cartItem';
@@ -9,7 +10,7 @@ import { CartItem } from 'src/models/cartItem';
 export class CartService {
     cartItems$ = new BehaviorSubject<Array<CartItem>>([]);
 
-    constructor() { }
+    constructor(private _snackBar: MatSnackBar) { }
 
     addItem(id: string, size: number, price: number, discountedPrice: number | null) {
         const cartItemsData = this.cartItems$.getValue();
@@ -19,6 +20,8 @@ export class CartService {
         cartItemsData.push({ id, size, price, discountedPrice });
 
         this.cartItems$.next(cartItemsData);
+
+        this._snackBar.open(`Item added to cart`, 'OK', {duration: 2000});
     }
 
     removeItem(id: string) {
@@ -31,5 +34,7 @@ export class CartService {
         }
 
         this.cartItems$.next(cartItemsData);
+
+        this._snackBar.open(`Item removed from cart`, 'OK', {duration: 2000});
     }
 }

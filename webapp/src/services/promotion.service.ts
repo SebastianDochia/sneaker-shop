@@ -23,7 +23,6 @@ export class PromotionService {
         this.http.get(`//localhost:5000/api/v1/promotions`).pipe(
             map((data: any) => data.data),
             tap((data: any) => {
-                console.log(data);
                 data.forEach((item: any) => {
                     const old_key = '_id';
                     const new_key = 'id';

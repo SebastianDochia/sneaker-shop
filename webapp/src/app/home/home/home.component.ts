@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
+
+import { Subject } from 'rxjs';
+import { Item } from 'src/models/item';
+import { ItemsService } from 'src/services/items.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +13,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  items$ = new Subject<Array<Item>>();
 
-  constructor() { }
+  constructor(private _itemsService: ItemsService) { }
 
   ngOnInit(): void {
+    this.items$ = this._itemsService.items$;
   }
 
+  firstTwoitems(items: Item[]) {
+    return [items[0], items[1]];
+  }  
 }

@@ -8,11 +8,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { NgxPayPalModule } from 'ngx-paypal';
 import {
   ClickStopPropagation,
 } from 'src/directives/click-stop-propagation.directive';
@@ -59,7 +61,9 @@ import { RatingComponent } from './util/rating/rating.component';
     MatChipsModule,
     MatDialogModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPayPalModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
