@@ -1,6 +1,6 @@
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
-const Promotion = require('../models/Promotion');
+const Promotion = require('../models/promotion');
 
 // @desc    Get all Promotions
 // @route   GET /api/v1/Promotions

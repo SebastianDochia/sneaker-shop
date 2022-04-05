@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv');
 const colors = require('colors')
@@ -42,7 +43,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(mongoSanitize());
 
 // Set security headers
-app.use(helmet());
+// app.use(helmet());
 
 // Prevent cross-site scripting attacks
 app.use(xss());
@@ -66,6 +67,16 @@ app.use('/api/v1/promotions', promotions);
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/user', user);
 app.use('/api/v1/orders', order);
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../webapp/dist/webapp')));
+
+    app.get('/*', (req, res) => res.sendFile(path.resolve(__dirname, '../webapp', 'dist', 'webapp', 'index.html')));
+} else {
+    app.get('/', (req, res) => {
+        res.send('API is running....')
+    })
+}
 
 app.use(errorHandler);
 

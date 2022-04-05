@@ -1,6 +1,6 @@
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
-const Item = require('../models/Item');
+const Item = require('../models/item');
 
 // @desc    Get all items
 // @route   GET /api/v1/items

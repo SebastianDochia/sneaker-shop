@@ -20,7 +20,7 @@ export class PromotionService {
     }
 
     fetchPromotions() {
-        this.http.get(`//localhost:5000/api/v1/promotions`).pipe(
+        this.http.get(`https://my-sneaker-shop.herokuapp.com/api/v1/promotions`).pipe(
             map((data: any) => data.data),
             tap((data: any) => {
                 data.forEach((item: any) => {

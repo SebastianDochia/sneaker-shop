@@ -24,7 +24,7 @@ export class ItemsService {
     }
 
     fetchItems() {
-        this.http.get(`//localhost:5000/api/v1/items`).pipe(
+        this.http.get(`https://my-sneaker-shop.herokuapp.com/api/v1/items`).pipe(
             map((data: any) => data.data),
             tap((data: any) => {
                 data.forEach((item: any) => {
